@@ -16,6 +16,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import final_exam.ezechiel_jolie.GalacTicket.service.UserDetailsServiceImp;
+
    
 @Configuration
 @EnableWebSecurity

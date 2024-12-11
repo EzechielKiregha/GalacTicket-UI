@@ -19,7 +19,7 @@ public class AuthenticationService {
 
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
+    private final JsonWebTokenService jwtService;
 
     private final AccessKeyRepository accessKeyRepository;
 
@@ -27,7 +27,7 @@ public class AuthenticationService {
 
     public AuthenticationService(UserRepository repository,
                                  PasswordEncoder passwordEncoder,
-                                 JwtService jwtService,
+                                 JsonWebTokenService jwtService,
                                  AccessKeyRepository accessKeyRepository,
                                  AuthenticationManager authenticationManager) {
         this.repository = repository;
@@ -87,7 +87,7 @@ public class AuthenticationService {
         }
 
         validTokens.forEach(t-> {
-            t.setLoggedOut(true);
+            t.setDeactivated(true);
         });
 
         accessKeyRepository.saveAll(validTokens);
