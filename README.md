@@ -125,7 +125,8 @@ curl -X GET http://localhost:8080/customers
 ---
 
 ## Contributors
-- **Ezechiel Jolie Kiregha**
+- **Kambale Kiregha Ezechiel**
+- **INGABIRE Juliette Jolie**
 
 ---
 
