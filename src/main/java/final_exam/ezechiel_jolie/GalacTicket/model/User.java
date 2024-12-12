@@ -20,7 +20,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "galactic_users")
 public class User implements UserDetails {
 
     @Id

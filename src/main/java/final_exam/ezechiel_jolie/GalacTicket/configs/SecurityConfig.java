@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import final_exam.ezechiel_jolie.GalacTicket.service.UserDetailsServiceImp;
+import final_exam.ezechiel_jolie.GalacTicket.service.impl.UserDetailsServiceImp;
 
    
 @Configuration
@@ -50,6 +50,8 @@ public class SecurityConfig {
                                 .requestMatchers("/reservations/**").hasAnyAuthority("ADMIN", "CUSTOMER")
                                 .requestMatchers("/tickets/**").hasAnyAuthority("ADMIN", "CUSTOMER")
                                 .requestMatchers("/venues/**").hasAuthority("ADMIN")
+                                .requestMatchers("/sendMail/**").hasAnyAuthority("ADMIN", "CUSTOMER")
+                                .requestMatchers("/sendMailWithAttachment/**").hasAnyAuthority("ADMIN", "CUSTOMER")
                                 .anyRequest()
                                 .authenticated()
                 ).userDetailsService(userDetailsServiceImp)

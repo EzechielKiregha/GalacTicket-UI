@@ -11,9 +11,9 @@ import final_exam.ezechiel_jolie.GalacTicket.model.AccessKey;
 public interface AccessKeyRepository extends JpaRepository<AccessKey, Integer> {
     @Query("""
         select t from AccessKey t inner join User u on t.user.id = u.id
-        where t.user.id = :userId and t.loggedOut = false
+        where t.user.id = :userId and t.deactivated = false
         """)
     List<AccessKey> findAllTokensByUser(Long userId);
 
-    Optional<AccessKey> findByToken(String token);
+    Optional<AccessKey> findByKeyValue(String keyValue);
 }

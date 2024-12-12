@@ -1,4 +1,4 @@
-package final_exam.ezechiel_jolie.GalacTicket.service;
+package final_exam.ezechiel_jolie.GalacTicket.service.impl;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -13,19 +13,19 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import final_exam.ezechiel_jolie.GalacTicket.service.JsonWebTokenService;
-import final_exam.ezechiel_jolie.GalacTicket.service.UserDetailsServiceImp;
+import final_exam.ezechiel_jolie.GalacTicket.service.JsonWTService;
+import final_exam.ezechiel_jolie.GalacTicket.service.impl.UserDetailsServiceImp;
 
 import java.io.IOException;
 
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-    private final JsonWebTokenService jwtService;
+    private final JsonWTService jwtService;
     private final UserDetailsServiceImp userDetailsService;
 
 
-    public JwtAuthenticationFilter(JsonWebTokenService jwtService, UserDetailsServiceImp userDetailsService) {
+    public JwtAuthenticationFilter(JsonWTService jwtService, UserDetailsServiceImp userDetailsService) {
         this.jwtService = jwtService;
         this.userDetailsService = userDetailsService;
     }

@@ -29,7 +29,7 @@ public class CustomLogoutHandler implements LogoutHandler {
         }
 
         String accessKey = authHeader.substring(7);
-        AccessKey storedAccessKey = accessKeyRepository.findByToken(accessKey).orElse(null);
+        AccessKey storedAccessKey = accessKeyRepository.findByKeyValue(accessKey).orElse(null);
 
         if(storedAccessKey != null) {
             storedAccessKey.setDeactivated(true);

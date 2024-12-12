@@ -29,7 +29,7 @@ public class Customer {
     @ManyToMany(mappedBy = "customers")
     private List<Event> attendedEvents;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "purchaser")
     private List<Ticket> purchasedTickets;
 
     public Customer() {

@@ -17,7 +17,7 @@ public class AccessKey {
     private boolean deactivated;
 
     @ManyToOne
-    @JoinColumn(name = "galactic_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     public Integer getKeyId() {

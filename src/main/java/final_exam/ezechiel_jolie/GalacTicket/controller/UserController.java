@@ -14,7 +14,7 @@ import final_exam.ezechiel_jolie.GalacTicket.service.UserService;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:3000")
+// @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/users")
 public class UserController {
