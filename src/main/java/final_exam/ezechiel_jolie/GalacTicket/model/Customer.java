@@ -79,8 +79,8 @@ public class Customer {
         return heldReservations;
     }
 
-    public void setHeldReservations(List<Reservation> heldReservations) {
-        this.heldReservations = heldReservations;
+    public void setHeldReservations(List<Reservation> heldHeldReservations) {
+        this.heldReservations = heldHeldReservations;
     }
 
     public List<Event> getAttendedEvents() {

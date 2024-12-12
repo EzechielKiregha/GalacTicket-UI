@@ -1,6 +1,7 @@
 package final_exam.ezechiel_jolie.GalacTicket.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,6 +10,7 @@ import final_exam.ezechiel_jolie.GalacTicket.model.EmailDetails;
 import final_exam.ezechiel_jolie.GalacTicket.service.EmailService;
 
 // Annotation
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 // Class
 public class EmailController {

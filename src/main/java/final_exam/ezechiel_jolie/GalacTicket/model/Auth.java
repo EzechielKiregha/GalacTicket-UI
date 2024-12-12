@@ -1,10 +1,10 @@
 package final_exam.ezechiel_jolie.GalacTicket.model;
 
-public class Authentication {
+public class Auth {
     private String accesskey;
     private String message;
 
-    public Authentication(String accesskey, String message) {
+    public Auth(String accesskey, String message) {
         this.accesskey = accesskey;
         this.message = message;
     }

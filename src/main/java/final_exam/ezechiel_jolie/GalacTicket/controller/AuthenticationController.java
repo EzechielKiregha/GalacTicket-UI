@@ -3,12 +3,13 @@ package final_exam.ezechiel_jolie.GalacTicket.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import final_exam.ezechiel_jolie.GalacTicket.model.Authentication;
+import final_exam.ezechiel_jolie.GalacTicket.model.Auth;
 import final_exam.ezechiel_jolie.GalacTicket.model.User;
 import final_exam.ezechiel_jolie.GalacTicket.service.AuthenticationService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
@@ -18,14 +19,14 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Authentication> register(@RequestBody User userRequest) {
-        Authentication response = authenticationService.register(userRequest);
+    public ResponseEntity<Auth> register(@RequestBody User userRequest) {
+        Auth response = authenticationService.register(userRequest);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Authentication> login(@RequestBody User userRequest) {
-        Authentication response = authenticationService.authenticate(userRequest);
+    public ResponseEntity<Auth> login(@RequestBody User userRequest) {
+        Auth response = authenticationService.authenticate(userRequest);
         return ResponseEntity.ok(response);
     }
 }

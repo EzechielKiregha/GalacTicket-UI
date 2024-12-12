@@ -24,8 +24,8 @@ public class CustomerService {
             return new Feedback("Customer with email " + customer.getEmail() + " already exists");
         }
 
-        if (customerRepository.existsByPhone(customer.getContactNumber())) {
-            return new Feedback("Customer with phone " + customer.getContactNumber() + " already exists");
+        if (customerRepository.existsByContactNumber(customer.getContactNumber())) {
+            return new Feedback("Customer with contactNumber " + customer.getContactNumber() + " already exists");
         }
 
         Customer savedCustomer = customerRepository.save(customer);
@@ -44,16 +44,16 @@ public class CustomerService {
         return customerRepository.findByEmail(email);
     }
 
-    public List<Customer> searchCustomersByName(String name) {
-        return customerRepository.findByNameContainingIgnoreCase(name);
+    public List<Customer> searchCustomersByFullName(String name) {
+        return customerRepository.findByFullNameContainingIgnoreCase(name);
     }
 
-    public List<Customer> getCustomersByAddress(String address) {
-        return customerRepository.findByAddressContainingIgnoreCase(address);
+    public List<Customer> getCustomersByResidence(String residence) {
+        return customerRepository.findByEmailContainingIgnoreCase(residence);
     }
 
-    public List<Customer> getCustomersWithReservations() {
-        return customerRepository.findByReservationsIsNotEmpty();
+    public List<Customer> getCustomersWithHeldReservations() {
+        return customerRepository.findByHeldReservationsIsNotEmpty();
     }
 
     public Feedback updateCustomer(Long id, Customer updatedCustomer) {
@@ -66,7 +66,7 @@ public class CustomerService {
         existingCustomer.setFullName(updatedCustomer.getFullName());
         existingCustomer.setEmail(updatedCustomer.getEmail());
         existingCustomer.setContactNumber(updatedCustomer.getContactNumber());
-        existingCustomer.setEmail(updatedCustomer.getEmail());
+        existingCustomer.setResidence(updatedCustomer.getResidence());
 
         customerRepository.save(existingCustomer);
         return new Feedback("Customer updated successfully");

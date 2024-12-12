@@ -15,17 +15,17 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Customer findByEmail(String email);
 
     // Find customers by name (partial matching for search functionality)
-    List<Customer> findByNameContainingIgnoreCase(String name);
+    List<Customer> findByFullNameContainingIgnoreCase(String name);
 
-    // Find customers by phone number
-    Customer findByPhone(String phone);
+    // Find customers by contactNumber number
+    Customer findByContactNumber(String contactNumber);
 
-    // Check if a customer exists by phone
-    boolean existsByPhone(String phone);
+    // Check if a customer exists by contactNumber
+    boolean existsByContactNumber(String contactNumber);
 
     // Find customers who have made reservations (potentially link to Reservation entity later)
-    List<Customer> findByReservationsIsNotEmpty();
+    List<Customer> findByHeldReservationsIsNotEmpty();
 
-    // Find customers by address (useful for filtering in specific locations)
-    List<Customer> findByAddressContainingIgnoreCase(String address);
+    // Find customers by email (useful for filtering in specific locations)
+    List<Customer> findByEmailContainingIgnoreCase(String email);
 }

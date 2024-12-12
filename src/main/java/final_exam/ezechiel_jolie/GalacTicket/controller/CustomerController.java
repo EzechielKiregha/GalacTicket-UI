@@ -8,7 +8,7 @@ import final_exam.ezechiel_jolie.GalacTicket.model.Customer;
 import final_exam.ezechiel_jolie.GalacTicket.service.CustomerService;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
@@ -40,18 +40,18 @@ public class CustomerController {
     }
 
     @GetMapping("/search/name")
-    public ResponseEntity<List<Customer>> searchCustomersByName(@RequestParam String name) {
-        return ResponseEntity.ok(customerService.searchCustomersByName(name));
+    public ResponseEntity<List<Customer>> searchCustomersByFullName(@RequestParam String name) {
+        return ResponseEntity.ok(customerService.searchCustomersByFullName(name));
     }
 
     @GetMapping("/search/address")
-    public ResponseEntity<List<Customer>> getCustomersByAddress(@RequestParam String address) {
-        return ResponseEntity.ok(customerService.getCustomersByAddress(address));
+    public ResponseEntity<List<Customer>> getCustomersByEmail(@RequestParam String residence) {
+        return ResponseEntity.ok(customerService.getCustomersByResidence(residence));
     }
 
     @GetMapping("/with-reservations")
-    public ResponseEntity<List<Customer>> getCustomersWithReservations() {
-        return ResponseEntity.ok(customerService.getCustomersWithReservations());
+    public ResponseEntity<List<Customer>> getCustomersWithHeldReservations() {
+        return ResponseEntity.ok(customerService.getCustomersWithHeldReservations());
     }
 
     @PutMapping("/update/{id}")

@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import final_exam.ezechiel_jolie.GalacTicket.feedback.Feedback;
-import final_exam.ezechiel_jolie.GalacTicket.model.Authentication;
+import final_exam.ezechiel_jolie.GalacTicket.model.Auth;
 import final_exam.ezechiel_jolie.GalacTicket.model.Login;
 import final_exam.ezechiel_jolie.GalacTicket.model.User;
 import final_exam.ezechiel_jolie.GalacTicket.service.AuthenticationService;
@@ -14,9 +14,9 @@ import final_exam.ezechiel_jolie.GalacTicket.service.UserService;
 import java.util.List;
 import java.util.Optional;
 
-// @CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/api/users")
 public class UserController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/save")
-    public ResponseEntity<Authentication> register(
+    public ResponseEntity<Auth> register(
             @RequestBody User request
             ) {
         return ResponseEntity.ok(authService.register(request));
@@ -51,14 +51,10 @@ public class UserController {
         Feedback responseMessage = userService.deleteUser(id);
         return ResponseEntity.ok(responseMessage);
     }
-    // @PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    // public ResponseEntity<Feedback> loginUser(@RequestBody User user) {
-    //     Feedback messageResponse = userService.loginUser(user);
-    //     return ResponseEntity.ok(messageResponse);
-    // }
+
     @PostMapping("/login")
     public ResponseEntity<Login> login(@RequestBody User request) {
-        Authentication authResponse = authService.authenticate(request);
+        Auth authResponse = authService.authenticate(request);
         Optional<User> user = userService.findByUsername(request.getUsername());
         
         Login login = new Login(authResponse, user.get());

@@ -46,7 +46,7 @@ public class EventService {
         existingEvent.setDescription(updatedEvent.getDescription());
         existingEvent.setCustomers(updatedEvent.getCustomers());
         existingEvent.setTickets(updatedEvent.getTickets());
-        existingEvent.setReservations(updatedEvent.getReservations());
+        existingEvent.setHeldReservations(updatedEvent.getHeldReservations());
 
         eventRepository.save(existingEvent);
         return new Feedback("Event updated successfully");

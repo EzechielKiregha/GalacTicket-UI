@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import final_exam.ezechiel_jolie.GalacTicket.model.AccessKey;
-import final_exam.ezechiel_jolie.GalacTicket.model.Authentication;
+import final_exam.ezechiel_jolie.GalacTicket.model.Auth;
 import final_exam.ezechiel_jolie.GalacTicket.model.User;
 import final_exam.ezechiel_jolie.GalacTicket.repository.AccessKeyRepository;
 import final_exam.ezechiel_jolie.GalacTicket.repository.UserRepository;
@@ -37,9 +37,9 @@ public class AuthenticationService {
         this.otpService = otpService;
     }
 
-    public Authentication register(User request) {
+    public Auth register(User request) {
         if (repository.findByEmail(request.getUsername()).isPresent()) {
-            return new Authentication(null, "User already exists");
+            return new Auth(null, "User already exists");
         }
         User user = new User();
         user.setEmail(request.getEmail());
@@ -52,14 +52,14 @@ public class AuthenticationService {
         int otp = otpService.generateOTP(user.getUsername());
         if(!otpService.sendOTP(user.getEmail(), "Your OTP", "Your OTP is: " + otp)){
             user = repository.save(user);
-            return new Authentication(null, "Registed successful. OTP failed... Go to profile to verify.");    
+            return new Auth(null, "Registed successful. OTP failed... Go to profile to verify.");    
         }
         user.setOtp(otp);
         user = repository.save(user);
-        return new Authentication(null, "User registration was successful. OTP has been sent to your email.");
+        return new Auth(null, "User registration was successful. OTP has been sent to your email.");
     }
 
-    public Authentication authenticate(User request) {
+    public Auth authenticate(User request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getUsername(),
@@ -70,7 +70,7 @@ public class AuthenticationService {
         // Validate OTP
         boolean isOtpValid = otpService.validateOTP(request.getUsername(), request.getOtp());
         if (!isOtpValid) {
-            return new Authentication(null, "Invalid OTP");
+            return new Auth(null, "Invalid OTP");
         }
         User user = repository.findByUsername(request.getUsername()).orElseThrow();
         String jwt = jwtService.generateToken(user);
@@ -80,7 +80,7 @@ public class AuthenticationService {
 
         user = repository.save(user);
 
-        return new Authentication(jwt, "User login was successful");
+        return new Auth(jwt, "User login was successful");
     }
 
     private void revokeAllTokenByUser(User user) {

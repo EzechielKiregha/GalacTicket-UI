@@ -97,11 +97,11 @@ public class Event {
         this.tickets = tickets;
     }
 
-    public List<Reservation> getReservations() {
+    public List<Reservation> getHeldReservations() {
         return reservations;
     }
 
-    public void setReservations(List<Reservation> reservations) {
+    public void setHeldReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
    
