@@ -41,6 +41,12 @@ public class User implements UserDetails {
     @Column(name = "role")
     private Role role;
 
+    @Column(name = "is_verified")
+    private boolean isVerified;
+
+    @Column(name = "otp")
+    private int otp;
+
     @OneToMany(mappedBy = "user")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Serialize only
     private List<AccessKey> tokens;
@@ -95,6 +101,22 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    public boolean isVerified() {
+        return isVerified;
+    }
+
+    public void setVerified(boolean isVerified) {
+        this.isVerified = isVerified;
+    }
+
+    public int getOtp() {
+        return otp;
+    }
+
+    public void setOtp(int otp) {
+        this.otp = otp;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));
@@ -118,5 +140,13 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public List<AccessKey> getTokens() {
+        return tokens;
+    }
+
+    public void setTokens(List<AccessKey> tokens) {
+        this.tokens = tokens;
     }
 }

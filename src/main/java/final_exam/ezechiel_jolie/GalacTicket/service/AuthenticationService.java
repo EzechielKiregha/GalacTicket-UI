@@ -12,7 +12,6 @@ import final_exam.ezechiel_jolie.GalacTicket.repository.AccessKeyRepository;
 import final_exam.ezechiel_jolie.GalacTicket.repository.UserRepository;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class AuthenticationService {
@@ -42,18 +41,21 @@ public class AuthenticationService {
         if (repository.findByEmail(request.getUsername()).isPresent()) {
             return new Authentication(null, "User already exists");
         }
-
         User user = new User();
         user.setEmail(request.getEmail());
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(request.getRole());
-        user = repository.save(user);
+        
 
         // Generate OTP and send it to the user
         int otp = otpService.generateOTP(user.getUsername());
-        otpService.sendOTP(user.getEmail(), "Your OTP", "Your OTP is: " + otp);
-
+        if(!otpService.sendOTP(user.getEmail(), "Your OTP", "Your OTP is: " + otp)){
+            user = repository.save(user);
+            return new Authentication(null, "Registed successful. OTP failed... Go to profile to verify.");    
+        }
+        user.setOtp(otp);
+        user = repository.save(user);
         return new Authentication(null, "User registration was successful. OTP has been sent to your email.");
     }
 
@@ -66,16 +68,17 @@ public class AuthenticationService {
         );
 
         // Validate OTP
-        boolean isOtpValid = otpService.validateOtp(request.getUsername(), request.getOtp());
+        boolean isOtpValid = otpService.validateOTP(request.getUsername(), request.getOtp());
         if (!isOtpValid) {
             return new Authentication(null, "Invalid OTP");
         }
-
         User user = repository.findByUsername(request.getUsername()).orElseThrow();
         String jwt = jwtService.generateToken(user);
-
+        user.setVerified(true);
         revokeAllTokenByUser(user);
         saveUserToken(jwt, user);
+
+        user = repository.save(user);
 
         return new Authentication(jwt, "User login was successful");
     }

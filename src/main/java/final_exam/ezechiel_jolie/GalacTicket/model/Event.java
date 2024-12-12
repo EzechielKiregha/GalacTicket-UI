@@ -31,6 +31,7 @@ public class Event {
         inverseJoinColumns = @JoinColumn(name = "customer_id")
     )
     private List<Customer> customers;
+    
     @OneToMany(mappedBy = "relatedEvent")
     private List<Ticket> tickets;
 
