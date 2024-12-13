@@ -4,9 +4,9 @@ import venueReducer from '@/redux/slices/venueSlice';
 import eventReducer from '@/redux/slices/eventSlice';
 import userReducer from '@/redux/slices/userSlice';
 import ticketReducer from '@/redux/slices/ticketSlice';
-import cartReducer from '@/redux/slices/cartSlice';
-import notificationReducer from '@/redux/slices/notificationSlice';
-import themeReducer from '@/redux/slices/themeSlice';
+// import cartReducer from '@/redux/slices/cartSlice';
+import reservationReducer from '@/redux/slices/reservationSlice';
+// import themeReducer from '@/redux/slices/customerSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,9 +14,9 @@ const store = configureStore({
     events: eventReducer,
     users: userReducer,
     tickets: ticketReducer,
-    cart: cartReducer,
-    notifications: notificationReducer,
-    theme: themeReducer,
+    // cart: cartReducer,
+    reservations: reservationReducer,
+    // theme: themeReducer,
   },
 });
 

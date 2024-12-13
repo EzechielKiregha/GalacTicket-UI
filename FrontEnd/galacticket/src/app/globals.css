@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 body {
+  margin: 0px;
   font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 100vh;
 }
-
+h2{
+  font-family: 'Title';
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

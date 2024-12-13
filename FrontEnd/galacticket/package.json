@@ -32,7 +32,8 @@
     "react-router-dom": "^7.0.2",
     "shadcn": "^2.1.7",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "typescript-plugin-css-modules": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

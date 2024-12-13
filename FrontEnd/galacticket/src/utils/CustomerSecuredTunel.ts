@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
-const AdminProtection = ({ children } : Readonly<{
-  children: React.ReactNode;
-}> ) => {
+const CustomerProtection = ({ children } : Readonly<{
+    children: React.ReactNode;
+  }> ) => {
   const [loading, setLoading] = useState(true);
   const [isAuth, setIsAuth] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -15,7 +15,7 @@ const AdminProtection = ({ children } : Readonly<{
 
       setIsAuth(isloggedin);
 
-      if (role && role === 'ADMIN') {
+      if (role && role === 'CUSTOMER') {
         setIsAdmin(true);
       } else {
         setIsAdmin(false);
@@ -28,18 +28,18 @@ const AdminProtection = ({ children } : Readonly<{
   }, []);
 
   if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+//     return <div>Loading...</div>;
+//   }
 
-  // if (!isAuth) {
-  //   return <Navigate to="/login" />;
-  // }
+//   if (!isAuth) {
+//     return <Navigate to="/login" />;
+//   }
 
-  // if (!isAdmin) {
-  //   return <Navigate to="/access" />;
+//   if (!isAdmin) {
+//     return <Navigate to="/access" />;
   }
 
   return children;
 };
 
-export default AdminProtection;
+export default CustomerProtection;
